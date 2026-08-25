@@ -102,8 +102,11 @@
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -188,9 +191,21 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="EmailGenerationRequest.cs" />
+    <Compile Include="EmailGenerationResponse.cs" />
+    <Compile Include="GenerateEmailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerateEmailForm.Designer.cs">
+      <DependentUpon>GenerateEmailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="GenerateEmailForm.resx">
+      <DependentUpon>GenerateEmailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -245,6 +260,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\chatbot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\generate email image11.jpg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

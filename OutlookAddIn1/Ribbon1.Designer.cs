@@ -34,9 +34,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon1));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.AIAssistGrp = this.Factory.CreateRibbonGroup();
-            this.genEmailBtn = this.Factory.CreateRibbonButton();
+            this.genEmailMenu = this.Factory.CreateRibbonMenu();
+            this.proEmailBtn = this.Factory.CreateRibbonButton();
+            this.casEmailBtn = this.Factory.CreateRibbonButton();
             this.emailSplchkBtn = this.Factory.CreateRibbonButton();
             this.langConBtn = this.Factory.CreateRibbonButton();
             this.repAssistBtn = this.Factory.CreateRibbonButton();
@@ -54,7 +57,7 @@
             // 
             // AIAssistGrp
             // 
-            this.AIAssistGrp.Items.Add(this.genEmailBtn);
+            this.AIAssistGrp.Items.Add(this.genEmailMenu);
             this.AIAssistGrp.Items.Add(this.emailSplchkBtn);
             this.AIAssistGrp.Items.Add(this.langConBtn);
             this.AIAssistGrp.Items.Add(this.repAssistBtn);
@@ -62,20 +65,34 @@
             this.AIAssistGrp.Label = "AI Assist";
             this.AIAssistGrp.Name = "AIAssistGrp";
             // 
-            // genEmailBtn
+            // genEmailMenu
             // 
-            this.genEmailBtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.genEmailBtn.Image = global::OutlookAddIn1.Properties.Resources.generate_email_image1;
-            this.genEmailBtn.Label = "Generate Email";
-            this.genEmailBtn.Name = "genEmailBtn";
-            this.genEmailBtn.ScreenTip = "Generate a complete email using AI based on your instructions.";
-            this.genEmailBtn.ShowImage = true;
-            this.genEmailBtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.genEmailBtn_Click);
+            this.genEmailMenu.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.genEmailMenu.Image = global::OutlookAddIn1.Properties.Resources.generate_email_image11;
+            this.genEmailMenu.Items.Add(this.proEmailBtn);
+            this.genEmailMenu.Items.Add(this.casEmailBtn);
+            this.genEmailMenu.Label = "Generate Email";
+            this.genEmailMenu.Name = "genEmailMenu";
+            this.genEmailMenu.ShowImage = true;
+            // 
+            // proEmailBtn
+            // 
+            this.proEmailBtn.Label = "Professional";
+            this.proEmailBtn.Name = "proEmailBtn";
+            this.proEmailBtn.ShowImage = true;
+            this.proEmailBtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.proEmailBtn_Click);
+            // 
+            // casEmailBtn
+            // 
+            this.casEmailBtn.Label = "Casual";
+            this.casEmailBtn.Name = "casEmailBtn";
+            this.casEmailBtn.ShowImage = true;
+            this.casEmailBtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.casEmailBtn_Click);
             // 
             // emailSplchkBtn
             // 
             this.emailSplchkBtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.emailSplchkBtn.Image = global::OutlookAddIn1.Properties.Resources.spellcheck;
+            this.emailSplchkBtn.Image = ((System.Drawing.Image)(resources.GetObject("emailSplchkBtn.Image")));
             this.emailSplchkBtn.Label = "Email Spell Check";
             this.emailSplchkBtn.Name = "emailSplchkBtn";
             this.emailSplchkBtn.ScreenTip = "Check your email for spelling and grammar mistakes and suggest corrections.";
@@ -85,7 +102,7 @@
             // langConBtn
             // 
             this.langConBtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.langConBtn.Image = global::OutlookAddIn1.Properties.Resources.translation;
+            this.langConBtn.Image = ((System.Drawing.Image)(resources.GetObject("langConBtn.Image")));
             this.langConBtn.Label = "Language Conversion";
             this.langConBtn.Name = "langConBtn";
             this.langConBtn.ScreenTip = "Translate your email content into another language using AI.";
@@ -95,7 +112,7 @@
             // repAssistBtn
             // 
             this.repAssistBtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.repAssistBtn.Image = global::OutlookAddIn1.Properties.Resources.reply;
+            this.repAssistBtn.Image = ((System.Drawing.Image)(resources.GetObject("repAssistBtn.Image")));
             this.repAssistBtn.Label = "Reply Assist";
             this.repAssistBtn.Name = "repAssistBtn";
             this.repAssistBtn.ScreenTip = "Generate an AI-assisted reply to the current email.";
@@ -105,7 +122,7 @@
             // chatbotBtn
             // 
             this.chatbotBtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.chatbotBtn.Image = global::OutlookAddIn1.Properties.Resources.chatbot;
+            this.chatbotBtn.Image = ((System.Drawing.Image)(resources.GetObject("chatbotBtn.Image")));
             this.chatbotBtn.Label = "Talk to Chatbot";
             this.chatbotBtn.Name = "chatbotBtn";
             this.chatbotBtn.ScreenTip = "Open the AI assistant to ask questions and get help while working in Outlook.";
@@ -130,11 +147,13 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup AIAssistGrp;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton genEmailBtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton emailSplchkBtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton langConBtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton repAssistBtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton chatbotBtn;
+        internal Microsoft.Office.Tools.Ribbon.RibbonMenu genEmailMenu;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton proEmailBtn;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton casEmailBtn;
     }
 
     partial class ThisRibbonCollection

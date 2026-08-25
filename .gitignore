@@ -362,4 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-OutlookAddIn1/Secrets.config
+OutlookAddIn1/App.config
