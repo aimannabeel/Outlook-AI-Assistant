@@ -43,24 +43,33 @@ namespace OutlookAddIn1
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(mailItem.Body))
+            if (string.IsNullOrWhiteSpace(mailItem.Body) && string.IsNullOrWhiteSpace(mailItem.Body))
             {
                 System.Windows.Forms.MessageBox.Show("The email body is empty.");
                 return;
             }
 
+            LoadingForm loadingForm = new LoadingForm();
+
             try
             {
                 SpellCheckService service = new SpellCheckService();
 
-                string correctedBody = await service.SpellCheck(mailItem.Body);
+                loadingForm.Show();
 
-                mailItem.Body = correctedBody;
+                SpellCheckResponse correctedEmail = await service.SpellCheck(mailItem.Body, mailItem.Subject);
+
+                mailItem.Subject = correctedEmail.subject;
+                mailItem.Body = correctedEmail.body;
             }
 
             catch (InvalidOperationException ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                loadingForm.Close();
             }
         }
 
