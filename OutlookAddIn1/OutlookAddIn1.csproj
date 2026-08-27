@@ -193,6 +193,7 @@
   <ItemGroup>
     <Compile Include="EmailGenerationRequest.cs" />
     <Compile Include="EmailGenerationResponse.cs" />
+    <Compile Include="GeminiService.cs" />
     <Compile Include="GenerateEmailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +236,7 @@
     <Compile Include="Ribbon1.Designer.cs">
       <DependentUpon>Ribbon1.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpellCheckService.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>

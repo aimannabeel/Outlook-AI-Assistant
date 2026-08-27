@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using Outlook = Microsoft.Office.Interop.Outlook;
+using System.Threading.Tasks;
 
 namespace OutlookAddIn1
 {
@@ -21,27 +23,57 @@ namespace OutlookAddIn1
 
         private void genEmailBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Generate Email Clicked");
         }
 
-        private void emailSplchkBtn_Click(object sender, RibbonControlEventArgs e)
+        private async void emailSplchkBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("SpellCheck Clicked");
+            Outlook.Inspector inspector = Globals.ThisAddIn.Application.ActiveInspector();
+
+            if (inspector == null)
+            {
+                System.Windows.Forms.MessageBox.Show("Please open an email before using Spell Check.");
+                return;
+            }
+
+            Outlook.MailItem mailItem = inspector.CurrentItem as Outlook.MailItem;
+
+            if (mailItem == null)
+            {
+                System.Windows.Forms.MessageBox.Show("The currently open Outlook item is not an email.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(mailItem.Body))
+            {
+                System.Windows.Forms.MessageBox.Show("The email body is empty.");
+                return;
+            }
+
+            try
+            {
+                SpellCheckService service = new SpellCheckService();
+
+                string correctedBody = await service.SpellCheck(mailItem.Body);
+
+                mailItem.Body = correctedBody;
+            }
+
+            catch (InvalidOperationException ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
 
         private void langConBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Language Conversion Clicked");
         }
 
         private void repAssistBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Reply Assist Clicked");
         }
 
         private void chatbotBtn_Click(object sender, RibbonControlEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Talk to Chatbot Clicked");
         }
 
         private void proEmailBtn_Click(object sender, RibbonControlEventArgs e)

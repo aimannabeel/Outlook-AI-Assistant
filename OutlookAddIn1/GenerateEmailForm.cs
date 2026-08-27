@@ -73,6 +73,8 @@ namespace OutlookAddIn1
 
                 mailItem.Subject = response.Subject;
                 mailItem.Body = response.Body;
+
+                this.Close();
             }
 
             catch (InvalidOperationException ex)
