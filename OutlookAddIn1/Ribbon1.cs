@@ -6,6 +6,7 @@ using System.Text;
 using System.Configuration;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OutlookAddIn1
 {
@@ -43,7 +44,7 @@ namespace OutlookAddIn1
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(mailItem.Body) && string.IsNullOrWhiteSpace(mailItem.Body))
+            if (string.IsNullOrWhiteSpace(mailItem.Subject) && string.IsNullOrWhiteSpace(mailItem.Body))
             {
                 System.Windows.Forms.MessageBox.Show("The email body is empty.");
                 return;
@@ -73,8 +74,65 @@ namespace OutlookAddIn1
             }
         }
 
-        private void langConBtn_Click(object sender, RibbonControlEventArgs e)
+        private async void langConBtn_Click(object sender, RibbonControlEventArgs e)
         {
+            Outlook.Inspector inspector = Globals.ThisAddIn.Application.ActiveInspector();
+            if (inspector == null)
+            {
+                  System.Windows.Forms.MessageBox.Show("Please open a new email before using Language Conversion");
+                  return;
+            }
+
+            Outlook.MailItem mailItem = inspector.CurrentItem as Outlook.MailItem;
+
+            if (mailItem == null)
+            {
+                System.Windows.Forms.MessageBox.Show("The currently open Outlook item is not an email.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(mailItem.Subject) && string.IsNullOrWhiteSpace(mailItem.Body))
+            {
+                System.Windows.Forms.MessageBox.Show("The email's body and subject are empty.");
+                return;
+            }
+
+
+            LanguageConversionForm form = new LanguageConversionForm();
+            DialogResult result = form.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                LoadingForm loadingForm = new LoadingForm();
+                loadingForm.Show();
+
+                LanguageConversionRequest request = new LanguageConversionRequest()
+                {
+                    Language = form.SelectedLanguage,
+                    Subject = mailItem.Subject,
+                    Body = mailItem.Body
+
+                };
+                try{
+                LanguageConversionService service = new LanguageConversionService();
+
+                LanguageConversionResponse response = await service.LanguageConversion(request);
+
+                mailItem.Body = response.Body;
+                    mailItem.Subject = response.Subject;
+                }
+                catch (InvalidOperationException ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+
+                    loadingForm.Close();
+                }
+            }
+
+
         }
 
         private void repAssistBtn_Click(object sender, RibbonControlEventArgs e)
