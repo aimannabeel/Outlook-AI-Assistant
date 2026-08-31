@@ -50,7 +50,7 @@ namespace OutlookAddIn1
                 return;
             }
 
-            LoadingForm loadingForm = new LoadingForm();
+            LoadingForm loadingForm = new LoadingForm("Checking Spelling...");
 
             try
             {
@@ -103,7 +103,7 @@ namespace OutlookAddIn1
 
             if (result == DialogResult.OK)
             {
-                LoadingForm loadingForm = new LoadingForm();
+                LoadingForm loadingForm = new LoadingForm("Translating...");
                 loadingForm.Show();
 
                 LanguageConversionRequest request = new LanguageConversionRequest()
@@ -135,8 +135,62 @@ namespace OutlookAddIn1
 
         }
 
-        private void repAssistBtn_Click(object sender, RibbonControlEventArgs e)
+        private async void repAssistBtn_Click(object sender, RibbonControlEventArgs e)
         {
+            Outlook.Inspector inspector = Globals.ThisAddIn.Application.ActiveInspector();
+
+            if (inspector == null)
+            {
+                MessageBox.Show("Please open an email before using Reply Assist.");
+                return;
+            }
+
+            Outlook.MailItem mailItem = inspector.CurrentItem as Outlook.MailItem;
+
+            if (mailItem == null)
+            {
+                MessageBox.Show("The currently open Outlook item is not an email.");
+                return;
+            }
+
+
+            ReplyAssistForm form = new ReplyAssistForm();
+            form.ShowDialog();
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+                repAssistBtn.Enabled = false;
+                LoadingForm loadingForm = new LoadingForm("Writing a reply...");
+                loadingForm.Show();
+                try
+                {
+                    ReplyAssistRequest request = new ReplyAssistRequest()
+                    {
+                        MailContent = form.MailContent,
+                        Instructions = form.Instructions
+                    };
+
+                    ReplyAssistService service = new ReplyAssistService();
+                    ReplyAssistResponse response = await service.GenerateReplyAsync(request);
+
+                    Outlook.MailItem replyItem = mailItem.Reply();
+
+                    replyItem.Body = response.Reply;
+
+                    replyItem.Display();
+                }
+
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    loadingForm.Close();
+                    repAssistBtn.Enabled = true;
+                }
+
+            }
         }
 
         private void chatbotBtn_Click(object sender, RibbonControlEventArgs e)
@@ -153,6 +207,9 @@ namespace OutlookAddIn1
         {
             GenerateEmailForm form = new GenerateEmailForm("Casual");
             form.ShowDialog();
+
+
+
         }
     }
 }

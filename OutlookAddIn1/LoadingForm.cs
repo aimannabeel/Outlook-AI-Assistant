@@ -12,9 +12,11 @@ namespace OutlookAddIn1
 {
     public partial class LoadingForm : Form
     {
-        public LoadingForm()
+        public LoadingForm(string message)
         {
             InitializeComponent();
+            label1.Text = message;
+
         }
     }
 }
