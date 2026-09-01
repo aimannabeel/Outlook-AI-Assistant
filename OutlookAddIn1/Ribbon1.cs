@@ -195,6 +195,8 @@ namespace OutlookAddIn1
 
         private void chatbotBtn_Click(object sender, RibbonControlEventArgs e)
         {
+            ChatbotForm form = new ChatbotForm();
+            form.ShowDialog();
         }
 
         private void proEmailBtn_Click(object sender, RibbonControlEventArgs e)

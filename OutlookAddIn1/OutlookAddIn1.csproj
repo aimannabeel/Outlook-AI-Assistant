@@ -191,6 +191,15 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="ChatbotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatbotForm.Designer.cs">
+      <DependentUpon>ChatbotForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatbotService.cs" />
+    <Compile Include="ChatMessage.cs" />
+    <Compile Include="ChatSession.cs" />
     <Compile Include="EmailGenerationRequest.cs" />
     <Compile Include="EmailGenerationResponse.cs" />
     <Compile Include="GeminiService.cs" />
@@ -219,6 +228,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="ChatbotForm.resx">
+      <DependentUpon>ChatbotForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerateEmailForm.resx">
       <DependentUpon>GenerateEmailForm.cs</DependentUpon>
     </EmbeddedResource>
