@@ -201,12 +201,44 @@ namespace OutlookAddIn1
 
         private void proEmailBtn_Click(object sender, RibbonControlEventArgs e)
         {
+            Outlook.Inspector inspector = Globals.ThisAddIn.Application.ActiveInspector();
+
+            if (inspector == null)
+            {
+                MessageBox.Show("Please open a new email before using Generate Email.");
+                return;
+            }
+
+            Outlook.MailItem mailItem = inspector.CurrentItem as Outlook.MailItem;
+
+            if (mailItem == null)
+            {
+                MessageBox.Show("The currently open Outlook item is not an email.");
+                return;
+            }
+
             GenerateEmailForm form = new GenerateEmailForm("Professional");
             form.ShowDialog();
         }
 
         private void casEmailBtn_Click(object sender, RibbonControlEventArgs e)
         {
+            Outlook.Inspector inspector = Globals.ThisAddIn.Application.ActiveInspector();
+
+            if (inspector == null)
+            {
+                MessageBox.Show("Please open a new email before using Generate Email.");
+                return;
+            }
+
+            Outlook.MailItem mailItem = inspector.CurrentItem as Outlook.MailItem;
+
+            if (mailItem == null)
+            {
+                MessageBox.Show("The currently open Outlook item is not an email.");
+                return;
+            }
+
             GenerateEmailForm form = new GenerateEmailForm("Casual");
             form.ShowDialog();
 

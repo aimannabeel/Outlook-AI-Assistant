@@ -104,6 +104,7 @@
             // 
             // ChatbotForm
             // 
+            this.AcceptButton = this.sendBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 529);
@@ -115,6 +116,7 @@
             this.Controls.Add(this.messageInputBox);
             this.Controls.Add(this.chatHistoryBox);
             this.Name = "ChatbotForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AI Chatbot";
             this.ResumeLayout(false);
             this.PerformLayout();

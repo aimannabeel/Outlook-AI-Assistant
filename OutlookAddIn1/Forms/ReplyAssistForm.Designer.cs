@@ -74,7 +74,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(713, 646);
+            this.confirmButton.Location = new System.Drawing.Point(713, 547);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
             this.confirmButton.TabIndex = 4;
@@ -84,7 +84,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(632, 646);
+            this.cancelButton.Location = new System.Drawing.Point(632, 547);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 5;
@@ -96,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 681);
+            this.ClientSize = new System.Drawing.Size(800, 575);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.label2);
@@ -104,6 +104,7 @@
             this.Controls.Add(this.replyCtxBox);
             this.Controls.Add(this.emailCtxBox);
             this.Name = "ReplyAssistForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReplyAssist";
             this.ResumeLayout(false);
             this.PerformLayout();

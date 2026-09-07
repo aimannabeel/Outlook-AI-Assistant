@@ -110,6 +110,7 @@
             this.Controls.Add(this.promptTextBox);
             this.Controls.Add(this.label1);
             this.Name = "GenerateEmailForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GenerateEmailForm";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -101,7 +101,9 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -191,53 +193,53 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="ChatbotForm.cs">
+    <Compile Include="Forms\ChatbotForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChatbotForm.Designer.cs">
+    <Compile Include="Forms\ChatbotForm.Designer.cs">
       <DependentUpon>ChatbotForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChatbotService.cs" />
-    <Compile Include="ChatMessage.cs" />
-    <Compile Include="ChatSession.cs" />
-    <Compile Include="EmailGenerationRequest.cs" />
-    <Compile Include="EmailGenerationResponse.cs" />
-    <Compile Include="GeminiService.cs" />
-    <Compile Include="GenerateEmailForm.cs">
+    <Compile Include="Services\ChatbotService.cs" />
+    <Compile Include="Models\ChatMessage.cs" />
+    <Compile Include="Models\ChatSession.cs" />
+    <Compile Include="Models\EmailGenerationRequest.cs" />
+    <Compile Include="Models\EmailGenerationResponse.cs" />
+    <Compile Include="Services\GeminiService.cs" />
+    <Compile Include="Forms\GenerateEmailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerateEmailForm.Designer.cs">
+    <Compile Include="Forms\GenerateEmailForm.Designer.cs">
       <DependentUpon>GenerateEmailForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerateEmailService.cs" />
-    <Compile Include="LanguageConversionForm.cs">
+    <Compile Include="Services\GenerateEmailService.cs" />
+    <Compile Include="Forms\LanguageConversionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LanguageConversionForm.Designer.cs">
+    <Compile Include="Forms\LanguageConversionForm.Designer.cs">
       <DependentUpon>LanguageConversionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LanguageConversionRequest.cs" />
-    <Compile Include="LanguageConversionResponse.cs" />
-    <Compile Include="LanguageConversionService.cs" />
-    <Compile Include="LoadingForm.cs">
+    <Compile Include="Models\LanguageConversionRequest.cs" />
+    <Compile Include="Models\LanguageConversionResponse.cs" />
+    <Compile Include="Services\LanguageConversionService.cs" />
+    <Compile Include="Forms\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoadingForm.Designer.cs">
+    <Compile Include="Forms\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="ChatbotForm.resx">
+    <EmbeddedResource Include="Forms\ChatbotForm.resx">
       <DependentUpon>ChatbotForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerateEmailForm.resx">
+    <EmbeddedResource Include="Forms\GenerateEmailForm.resx">
       <DependentUpon>GenerateEmailForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LanguageConversionForm.resx">
+    <EmbeddedResource Include="Forms\LanguageConversionForm.resx">
       <DependentUpon>LanguageConversionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadingForm.resx">
+    <EmbeddedResource Include="Forms\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -250,7 +252,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ReplyAssistForm.resx">
+    <EmbeddedResource Include="Forms\ReplyAssistForm.resx">
       <DependentUpon>ReplyAssistForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon1.resx">
@@ -266,23 +268,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ReplyAssistForm.cs">
+    <Compile Include="Forms\ReplyAssistForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReplyAssistForm.Designer.cs">
+    <Compile Include="Forms\ReplyAssistForm.Designer.cs">
       <DependentUpon>ReplyAssistForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReplyAssistRequest.cs" />
-    <Compile Include="ReplyAssistResponse.cs" />
-    <Compile Include="ReplyAssistService.cs" />
+    <Compile Include="Models\ReplyAssistRequest.cs" />
+    <Compile Include="Models\ReplyAssistResponse.cs" />
+    <Compile Include="Services\ReplyAssistService.cs" />
     <Compile Include="Ribbon1.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Ribbon1.Designer.cs">
       <DependentUpon>Ribbon1.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpellCheckResponse.cs" />
-    <Compile Include="SpellCheckService.cs" />
+    <Compile Include="Models\SpellCheckResponse.cs" />
+    <Compile Include="Services\SpellCheckService.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>

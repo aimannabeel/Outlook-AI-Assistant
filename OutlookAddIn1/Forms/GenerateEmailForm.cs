@@ -61,6 +61,7 @@ namespace OutlookAddIn1
             if (inspector == null)
                 {
                     MessageBox.Show("Please open a new email before generating.");
+                    return;
                 }
 
             Outlook.MailItem mailItem = inspector.CurrentItem as Outlook.MailItem;

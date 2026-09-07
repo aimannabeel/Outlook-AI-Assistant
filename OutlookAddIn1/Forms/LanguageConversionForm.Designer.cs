@@ -92,6 +92,7 @@
             this.Controls.Add(this.languageComboBox);
             this.Controls.Add(this.label1);
             this.Name = "LanguageConversionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choose a language";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -17,6 +17,13 @@ namespace OutlookAddIn1
         {
             InitializeComponent();
             chatSession = new ChatSession();
+            ChatMessage intro = new ChatMessage()
+            {
+                Role = "assistant",
+                Content = "Hi! I am your personal AI assistant, what can I help you with today?"
+            };
+            chatSession.ChatMessageHistory.Add(intro);
+            chatHistoryBox.AppendText($"AI: {intro.Content}\n\n");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -78,6 +85,13 @@ namespace OutlookAddIn1
         {
             chatHistoryBox.Clear();
             chatSession.ChatMessageHistory.Clear();
+            ChatMessage intro = new ChatMessage()
+            {
+                Role = "assistant",
+                Content = "Hi! I am your personal AI assistant, what can I help you with today?"
+            };
+            chatSession.ChatMessageHistory.Add(intro);
+            chatHistoryBox.AppendText($"AI: {intro.Content}\n\n");
         }
     }
 }
